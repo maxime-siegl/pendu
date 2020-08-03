@@ -2,6 +2,7 @@
 session_start();
 if(isset($_POST['reset'])) {
   unset($_SESSION["letter_found"]);
+  unset($_SESSION["erreurs"]);
 }
 if(!isset($_SESSION["erreurs"])) {
   # Si première connexion, on initialise le nombre d'erreur
@@ -24,25 +25,28 @@ if(isset($_POST['reponse'])) {
   $reponse = $_POST['reponse'];
   $lettres = str_split($mot, 1); # On convertit le $mot en tableau
 
-    # Permet de remplacer les _ par la bonne lettre au bon index
-    for($i = 0; $i < strlen($mot); $i++) {
-      $nb_juste = 0;
-      if($lettres[$i] == $reponse) {
-        $underscore_array[$i] = $reponse;
-        $nb_juste++;
-      }
+  # Permet de remplacer les _ par la bonne lettre au bon index
+  for($i = 0; $i < strlen($mot); $i++)
+  {
+    $nb_juste = 0;
+    if($lettres[$i] == $reponse)
+    {
+      $underscore_array[$i] = $reponse;
+      $nb_juste++;
     }
+  }
 
-    if($nb_juste == 0) {
-      $_SESSION["erreurs"]++;
-
-    }
-
-    $_SESSION['letter_found'] = $underscore_array;
+  if($nb_juste == 0)
+  {
+    $_SESSION["erreurs"]++;
+    echo $_SESSION["erreurs"]; ?>
+    <img src="img/pendu<?= $_SESSION["erreurs"];?>.jpg">
+    <?php
+  }
+  $_SESSION['letter_found'] = $underscore_array;
 }
 
 var_dump($underscore_array);
-
 
 ?>
 <html>
