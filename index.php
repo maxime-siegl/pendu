@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(isset($_POST['reset'])){
+  session_destroy();
+}
 # Stocker un mot = string
 $mot = "testeur";
 # Compter le nombre de caractères dans $mot
@@ -105,25 +108,6 @@ if(isset($_POST['reponse'])){
   }
 }
 
-# Remplace _ par la lettre provenant du mot
-# $visible_word = str_replace("_ ", $lettres, $mot);
-# var_dump($visible_word);
-
-/* Autre solution : afficher un nombre de _ égal au nombre de lettres,
-puis dévoiler les lettres trouvées */
-
-
-# Les lettres doivent être remplacées par des _
-
-# Afficher l'alphabet : chaque lettre est un lien OU un bouton
-# Ou afficher un simple formulaire
-
-/* Si l'user choisit une lettre de l'alphabet qui correspond à une lettre de $mot,
-on affiche la lettre correspondante */
-
-if(isset($_POST['reset'])){
-  session_destroy();
-}
 
 ?>
 <html>
@@ -135,8 +119,9 @@ if(isset($_POST['reset'])){
       <label for "reponse"> Entrez une lettre : </label>
       <input type="text" name="reponse">
     </form>
+
     <form action="" method="POST">
-      <button class="reset"> Reset </button>
+      <button name="reset"> Reset </button>
     </form>
 
   </body>
