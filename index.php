@@ -58,55 +58,29 @@ if(isset($_POST["reponse"])){
 
 # *********************************
 
-# Remplit un tableau de _ avec le nombre de lettre du $mot
-$underscore_array = array_fill(0, strlen($mot), "_");
-var_dump($underscore_array);
-
-# Affiche les _
-echo "<br> Hidden word: <br>";
-foreach($underscore_array as $element){ # Chaque $element est une lettre
-
-  echo $element . " ";
+if(isset($_SESSION["letter_found"])) {
+  $underscore_array = $_SESSION["letter_found"];
+} else {
+  $underscore_array = array_fill(0, strlen($mot), "_");
 }
 
-# Les caractères du $mot sont stockés dans un tableau
-# echo "<br> Stockage des lettres dans un tableau : <br>";
-# $lettres = str_split($mot, 1);
-# var_dump($lettres);
-
-# Afficher le mot en séparant les lettres
-/* foreach($lettres as $element){ # Chaque $element est une lettre
-
-  echo $element . " ";
-} */
-
-
 # Trouver la lettre envoyée par POST dans le $mot
-if(isset($_POST['reponse'])){
-  $position_lettre = strpos($mot, $_POST['reponse']);
+if(isset($_POST['reponse'])) {
 
   $reponse = $_POST['reponse'];
-  $lettres = str_split($mot, 1);
+  $lettres = str_split($mot, 1); # On convertit le $mot en tableau
 
-  var_dump($lettres);
-
-  if($position_lettre !== false){
     # Permet de remplacer les _ par la bonne lettre au bon index
-    # pb : ne conserve pas successivement les lettres envoyées par post
     for($i = 0; $i < strlen($mot); $i++) {
-
       if($lettres[$i] == $reponse) {
-        if(isset($_SESSION['letter_found'])){
-        $underscore_array = $_SESSION['letter_found'];
-      }
         $underscore_array[$i] = $reponse;
       }
     }
-    var_dump($underscore_array); # l'un des e ne s'ajoute pas dans le tableau
+
     $_SESSION['letter_found'] = $underscore_array;
-    #echo "letter is found and start at $position_lettre";
-  }
 }
+
+var_dump($underscore_array);
 
 
 ?>
