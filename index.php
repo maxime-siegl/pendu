@@ -9,7 +9,7 @@ if(!isset($_SESSION["erreurs"])) {
   $_SESSION["erreurs"] = 0;
 }
 
-$mot = "testeur";
+$mot = "test";
 
 # *********************************
 
@@ -49,6 +49,11 @@ if(isset($_POST['reponse'])) {
 }
 
 var_dump($underscore_array);
+
+# Récupération de mots dans le fichier mots.txt
+$fichier = file('mots.txt'); # renvoie les résultats du fichier dans un tableau
+echo $fichier[array_rand($fichier)]; # choisit une ligne au hasard
+
 ?>
 <html>
   <head>
