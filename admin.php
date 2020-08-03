@@ -11,7 +11,9 @@ if ($fichier) {
     while (($ligne = fgets($fichier)) !== false) {
         echo $ligne . "<br>";
     }
-
+    if(isset($_POST['add_word'])){
+      fputs($fichier, $_POST['add_word']); # ne se refresh pas
+    }
     fclose($fichier);
 }
 
