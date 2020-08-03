@@ -25,28 +25,30 @@ if(isset($_POST['reponse'])) {
   $lettres = str_split($mot, 1); # On convertit le $mot en tableau
 
   # Permet de remplacer les _ par la bonne lettre au bon index
-  $nb_juste = 0;
+  $nb_juste = false;
   for($i = 0; $i < strlen($mot); $i++)
   {
-
     if($lettres[$i] == $reponse)
     {
       $underscore_array[$i] = $reponse;
-      $nb_juste++;
+      $nb_juste = true;
     }
   }
-  if($nb_juste == 0)
+
+  if($nb_juste == false)
   {
     $_SESSION["erreurs"]++;
+  }
+
+  if($_SESSION["erreurs"] > 0){
     $erreur = $_SESSION['erreurs'];
-    echo "<img src='img/pendu$erreur.jpg'>";
+    echo "<img src='img/pendu$erreur.jpg'>"; # l'image s'affiche en double...
   }
 
   $_SESSION['letter_found'] = $underscore_array;
 }
 
 var_dump($underscore_array);
-
 ?>
 <html>
   <head>
