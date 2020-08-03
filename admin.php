@@ -12,7 +12,7 @@ if ($fichier) {
         echo $ligne . "<br>";
     }
     if(isset($_POST['add_word'])){
-      fputs($fichier, $_POST['add_word']); # ne se refresh pas
+      fputs($fichier, $_POST['add_word']. "<br>"); # ne se refresh pas
     }
     fclose($fichier);
 }
