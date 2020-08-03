@@ -1,60 +1,14 @@
 <?php
 session_start();
-if(isset($_POST['reset'])){
-  session_destroy();
+if(isset($_POST['reset'])) {
+  unset($_SESSION["letter_found"]);
 }
-# Stocker un mot = string
+if(!isset($_SESSION["erreurs"])) {
+  # Si première connexion, on initialise le nombre d'erreur
+  $_SESSION["erreurs"] = 0;
+}
+
 $mot = "testeur";
-# Compter le nombre de caractères dans $mot
-$nombre_lettres = strlen($mot);
-$lettres = str_split($mot, 1);
-
-/********/
-
-if(isset($_POST["reponse"])){
-  $reponse = $_POST['reponse'];
-  # Bonnes réponses
-  if (in_array($reponse, $lettres)) { # le tableau $lettres doit contenir les lettres séparées, et pas une chaîne de caractères
-      echo "good answer <br>";
-      if(!isset($_SESSION["true"])) # Si la session n'est pas ouverte
-      {
-          $true = []; # on crée un tableau vide
-      } else {
-          $true = $_SESSION["true"]; # Si la session est ouverte, on récupère le tableau de la session
-      }
-
-      if(isset($_POST["reponse"])){ # Si le formulaire est utilisé
-        array_push($true, $_POST['reponse']); # On insère dans le tableau ce qui provient du formulaire
-      }
-
-      $_SESSION["true"] = $true; # Enfin, on stocke dans la session le tableau nouvellement rempli
-
-      var_dump($_SESSION["true"]);
-  # Mauvaises réponses
-  }else{
-    echo "bad answer <br>";
-    if(!isset($_SESSION["false"])) # Si la session n'est pas ouverte
-    {
-        $false = []; # on crée un tableau vide
-    } else {
-        $false = $_SESSION["false"]; # Si la session est ouverte, on récupère le tableau de la session
-    }
-
-    if(isset($_POST["reponse"])){ # Si le formulaire est utilisé
-      # on compte combien de valeurs contient le tableau
-
-      if(count($false) < 8)
-      { # si le nombre de valeurs du tableau est inférieur à 5, on ajoute la valeur
-        array_push($false, $_POST['reponse']); # On insère dans le tableau ce qui provient du formulaire
-      }else{ # si le tableau contient 8 valeurs, on affiche un message sans remplir le nouveau le tableau
-        echo "You failed.";
-      }
-    }
-    $_SESSION["false"] = $false; # Enfin, on stocke dans la session le tableau nouvellement rempli
-
-    var_dump($_SESSION["false"]);
-  }
-}
 
 # *********************************
 
@@ -72,9 +26,16 @@ if(isset($_POST['reponse'])) {
 
     # Permet de remplacer les _ par la bonne lettre au bon index
     for($i = 0; $i < strlen($mot); $i++) {
+      $nb_juste = 0;
       if($lettres[$i] == $reponse) {
         $underscore_array[$i] = $reponse;
+        $nb_juste++;
       }
+    }
+
+    if($nb_juste == 0) {
+      $_SESSION["erreurs"]++;
+
     }
 
     $_SESSION['letter_found'] = $underscore_array;
