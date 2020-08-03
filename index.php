@@ -21,28 +21,27 @@ if(isset($_SESSION["letter_found"])) {
 
 # Trouver la lettre envoyée par POST dans le $mot
 if(isset($_POST['reponse'])) {
-
   $reponse = $_POST['reponse'];
   $lettres = str_split($mot, 1); # On convertit le $mot en tableau
 
   # Permet de remplacer les _ par la bonne lettre au bon index
+  $nb_juste = 0;
   for($i = 0; $i < strlen($mot); $i++)
   {
-    $nb_juste = 0;
+
     if($lettres[$i] == $reponse)
     {
       $underscore_array[$i] = $reponse;
       $nb_juste++;
     }
   }
-
   if($nb_juste == 0)
   {
     $_SESSION["erreurs"]++;
-    echo $_SESSION["erreurs"]; ?>
-    <img src="img/pendu<?= $_SESSION["erreurs"];?>.jpg">
-    <?php
+    $erreur = $_SESSION['erreurs'];
+    echo "<img src='img/pendu$erreur.jpg'>";
   }
+
   $_SESSION['letter_found'] = $underscore_array;
 }
 
