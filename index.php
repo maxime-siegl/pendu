@@ -4,17 +4,19 @@ session_start();
 if(isset($_POST['reset'])) {
   unset($_SESSION["letter_found"]);
   unset($_SESSION["erreurs"]);
+
+  $fichier = file('mots.txt'); # Lit le fichier et renvoie le résultat dans un tableau
+  $random = $fichier[array_rand($fichier)]; # choisit une ligne au hasard
+  # trim() permet de supprimer les guillemets en début et en fin de chaîne, le résultat est stocké dans une session
+  $_SESSION["trimmed"] = trim($random);
+
 }
 # Si première connexion, on initialise le nombre d'erreur
 if(!isset($_SESSION["erreurs"])) {
   $_SESSION["erreurs"] = 0;
 }
-# Récupération de mots dans le fichier mots.txt
-$fichier = file('mots.txt'); # renvoie les résultats du fichier dans un tableau
-$random = $fichier[array_rand($fichier)]; # choisit une ligne au hasard
 
-$trimmed = trim($random); # trim() permet de supprimer les guillemets en début et en fin de chaîne
-$mot = $trimmed;
+$mot = $_SESSION["trimmed"];
 
 echo "<br>" .$mot;
 # *********************************
