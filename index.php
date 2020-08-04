@@ -12,11 +12,9 @@ if(!isset($_SESSION["erreurs"])) {
 # Récupération de mots dans le fichier mots.txt
 $fichier = file('mots.txt'); # renvoie les résultats du fichier dans un tableau
 $random = $fichier[array_rand($fichier)]; # choisit une ligne au hasard
-echo $random;
 var_dump($random);
 
 $mot = "test"; # Devra être remplacé par l'un des mots du fichier mots.txt
-echo "Mot permettant d'effectuer des tests : " . $mot;
 # *********************************
 
 
@@ -54,15 +52,16 @@ if(isset($_POST['reponse']))
     {
       $_SESSION["erreurs"]++;
     }
-
+    # S'il y a une erreur et qu'il en existe moins de 8, on affiche une image
     if($_SESSION["erreurs"] > 0)
     {
       if($_SESSION["erreurs"] < 8)
       {
         $erreur = $_SESSION['erreurs'];
         echo "<img src='img/pendu$erreur.jpg'>";
-      }elseif($_SESSION["erreurs"] == 8){
-        echo "Echec.";
+
+      }elseif($_SESSION["erreurs"] == 8){ # S'il y a 8 erreurs, on affiche un message d'échec
+        echo "<br>Echec.";
       }
     }
 
@@ -71,6 +70,11 @@ if(isset($_POST['reponse']))
 echo "<br>Affichage du tableau underscore_array :";
 var_dump($underscore_array);
 
+# S'il n'y a plus de _ dans le tableau du mot, on affiche un message de victoire
+$search_underscore = in_array("_", $underscore_array);
+if($search_underscore == false){
+  echo "Victoire !";
+}
 
 
 ?>
