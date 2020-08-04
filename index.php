@@ -1,6 +1,6 @@
 <?php 
     include 'include/class.php';
-    session_start(); 
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -13,14 +13,16 @@
     <header></header>
     <main>
         <form action="index.php" method="POST">
-            <label for="mot_pendu">Mot a faire deviner:</label>
-            <input type="text" name="mot_pendu">
-            <button type="submit" name="valider">Valider</button>
+            <button type="submit" name="valider">Start random</button>
         </form>
         <?php
-            if (isset($_POST['valider']) && !empty($_POST['mot_pendu'])) // mot rentré dans le form
+            if (isset($_POST['valider']) || isset($_POST['new_game']) || isset($_POST['reset']))
             {
-                $mot = $_POST['mot_pendu'];
+                $fichier = file('mots.txt'); # Lit le fichier et renvoie le résultat dans un tableau
+                $mot = $fichier[array_rand($fichier)]; # choisit une ligne au hasard
+                # trim() permet de supprimer les guillemets en début et en fin de chaîne, le résultat est stocké dans une session
+                $_SESSION["mot"] = trim($mot);
+                
                 $longueur = strlen($mot);
                 
                 $_SESSION['pendaison'] = 0;
@@ -119,8 +121,10 @@
                     else if ($game == 'loose')
                     {
                         echo '<section class="poploose">';
+                        echo '<form action="index.php" method="POST">';
                         echo '<p>Vous n\'avez pas réussi à trouver notre mot, on en tente un nouveau ?</p>';
                         echo '<button type="submit" name="new_game">New Game</button>';
+                        echo '</form>';
                         echo '</section>';
                     }
                 }
