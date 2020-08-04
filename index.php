@@ -18,7 +18,7 @@ if(!isset($_SESSION["erreurs"])) {
 
 $mot = $_SESSION["trimmed"];
 
-echo "<br>" .$mot;
+echo "<br>" .$mot ."<br>";
 # *********************************
 
 
@@ -64,8 +64,9 @@ if(isset($_POST['reponse']))
 
     $_SESSION['letter_found'] = $underscore_array;
 }
-echo "<br>Affichage du tableau underscore_array :";
-var_dump($underscore_array);
+
+$array_to_string = implode(" ", $underscore_array);
+echo $array_to_string . "<br>";
 
 # S'il n'y a plus de _ dans le tableau du mot, on affiche un message de victoire
 $search_underscore = in_array("_", $underscore_array);
