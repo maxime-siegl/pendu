@@ -12,9 +12,11 @@ if(!isset($_SESSION["erreurs"])) {
 # Récupération de mots dans le fichier mots.txt
 $fichier = file('mots.txt'); # renvoie les résultats du fichier dans un tableau
 $random = $fichier[array_rand($fichier)]; # choisit une ligne au hasard
-var_dump($random);
 
-$mot = "test"; # Devra être remplacé par l'un des mots du fichier mots.txt
+$trimmed = trim($random); # trim() permet de supprimer les guillemets en début et en fin de chaîne
+$mot = $trimmed;
+
+echo "<br>" .$mot;
 # *********************************
 
 
@@ -24,13 +26,6 @@ if(isset($_SESSION["letter_found"])) {
   $underscore_array = array_fill(0, strlen($mot), "_"); # Remplit un tableau avec des _ de la taille du mot
 }
 
-/****** A placer au bon endroit *****/
-# Condition pouvant permettre l'affichage d'un message de victoire : reste à la placer au bon endroit
-if($underscore_array == strlen($mot)){ #il faudrait autre chose que underscore_array, car sa taille est fixe...
-  echo "Victoire !";
-}
-
-/********************************/
 
 # Trouver la lettre envoyée par POST dans le $mot
 if(isset($_POST['reponse']))
