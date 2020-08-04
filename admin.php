@@ -2,9 +2,8 @@
 # Gestion de la liste des mots
 # Ajouter - Supprimer - Afficher
 
-
 $fichier = fopen('mots.txt', 'r+');
-
+# Pb de l'affichage en ligne dans le fichier mots.txt
 // Affichage de toutes les lignes du fichier
 
 if ($fichier) {
@@ -13,7 +12,7 @@ if ($fichier) {
         echo "<a href='admin.php'>Supprimer un mot</a>" ;
     }
     if(isset($_POST['add_word'])){
-      fputs($fichier, "<br>" .$_POST['add_word'] ); # ne se refresh pas
+      fwrite($fichier, $_POST['add_word'] . "\n" );
       header("Location:admin.php");
     }
     fclose($fichier);
