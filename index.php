@@ -55,17 +55,22 @@ if(isset($_POST['reponse']))
       $_SESSION["erreurs"]++;
     }
 
-    if($_SESSION["erreurs"] < 7){
-      $erreur = $_SESSION['erreurs'];
-      echo "<img src='img/pendu$erreur.jpg'>";
-    }else{
-      echo "Echec.";
+    if($_SESSION["erreurs"] > 0)
+    {
+      if($_SESSION["erreurs"] < 8)
+      {
+        $erreur = $_SESSION['erreurs'];
+        echo "<img src='img/pendu$erreur.jpg'>";
+      }elseif($_SESSION["erreurs"] == 8){
+        echo "Echec.";
+      }
     }
 
     $_SESSION['letter_found'] = $underscore_array;
 }
 echo "<br>Affichage du tableau underscore_array :";
 var_dump($underscore_array);
+
 
 
 ?>
