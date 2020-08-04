@@ -9,10 +9,12 @@ $fichier = fopen('mots.txt', 'r+');
 
 if ($fichier) {
     while (($ligne = fgets($fichier)) !== false) {
-        echo $ligne . "<br>";
+        echo $ligne ;
+        echo "<a href='admin.php'>Supprimer un mot</a>" ;
     }
     if(isset($_POST['add_word'])){
-      fputs($fichier, $_POST['add_word']. "<br>"); # ne se refresh pas
+      fputs($fichier, "<br>" .$_POST['add_word'] ); # ne se refresh pas
+      header("Location:admin.php");
     }
     fclose($fichier);
 }
@@ -29,8 +31,5 @@ if ($fichier) {
        <input type="text" name="add_word">
      </form>
 
-     <form action="" method="POST">
-       <button name="delete_word"> Supprimer un mot </button>
-     </form>
 
    </body>
