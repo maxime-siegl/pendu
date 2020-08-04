@@ -8,8 +8,7 @@ $fichier = fopen('mots.txt', 'r+');
 
 if ($fichier) {
     while (($ligne = fgets($fichier)) !== false) {
-        echo $ligne ;
-        echo "<a href='admin.php'>Supprimer un mot</a>" ;
+        echo $ligne . "<a href='admin.php'>Supprimer un mot</a>"  ."<br>";
     }
     if(isset($_POST['add_word'])){
       fwrite($fichier, $_POST['add_word'] . "\n" );
