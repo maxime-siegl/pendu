@@ -1,6 +1,5 @@
 <?php
     session_start();
-    include('include/php_inscription.php');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
