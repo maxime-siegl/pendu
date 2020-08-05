@@ -18,7 +18,7 @@
           if($mdp == $confirmation){
             echo 'Login libre.';
             $mdp_hash = password_hash($mdp, PASSWORD_BCRYPT);
-            $query = $db->prepare("INSERT INTO utilisateurs(login, password) VALUES ('$login', '$mdp_hash')");
+            $query = $db->prepare("INSERT INTO utilisateurs(login, mdp) VALUES ('$login', '$mdp_hash')");
             $query->execute();
 
             echo "Inscription réussie.";
