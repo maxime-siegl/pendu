@@ -25,10 +25,10 @@
                 
                 $longueur = strlen($mot);
                 
-                $_SESSION['pendaison'] = 0;
-                $_SESSION['reponses'] = [];
-                $_SESSION['nice'] = 0;
-                $_SESSION['lettre'] = "";
+                $_SESSION['pendaison'] = 0; // avancé de l'image du pendu (défaite)
+                $_SESSION['reponses'] = []; // ensmeble de toute les lettres qui ont été demandé
+                $_SESSION['nice'] = 0; // nb d'occurence de la lettre par rapport au mot
+                $_SESSION['lettre'] = ""; // lettre a comparer
 
                 for ($x = 0; $x < $longueur; $x++) // création des lettres du mot pendu...
                 {
@@ -52,8 +52,17 @@
             if (isset($_POST['chercher']) && !empty($_POST['lettre'])) // lettre rentré dans le form
             {
                 $lettre = $_POST['lettre'];
-                $_SESSION['lettre'] = $lettre;
-                array_push($_SESSION['reponses'], "$lettre");
+                
+                if(in_array($lettre, $_SESSION['reponses']))
+                {
+                    $double = true; // var verif dun doublon/ je m'en sert pour les incrementations
+                    $msg_lettre = 'Vous avez déjà essayé cette lettre !!';
+                }
+                else
+                {
+                    $_SESSION['lettre'] = $lettre;
+                    array_push($_SESSION['reponses'], "$lettre");
+                }
             }
 
             if (isset($caract)) // si le jeu a été créé
@@ -67,7 +76,10 @@
                     if ($lettre == $caract[$x]->getcaractere()) // comparaison =
                     {
                         $caract[$x]->setposition(1);
-                        $_SESSION['occurence'] = $_SESSION['occurence'] + 1;
+                        if (!isset($double))
+                        {
+                            $_SESSION['occurence'] = $_SESSION['occurence'] + 1;
+                        }
                     }
                     
                     $_SESSION['jeu'] = $caract;
@@ -85,17 +97,16 @@
                 $_SESSION['nice'] = $_SESSION['nice'] + $_SESSION['occurence']; 
                 
                 var_dump($_SESSION['occurence']);
-                if ($_SESSION['occurence'] == 0) // si pas d'occurence alors img pendaison avance
+                if (!isset($double))
                 {
-                    $_SESSION['pendaison'] = $_SESSION['pendaison'] + 1;
+                    if ($_SESSION['occurence'] == 0) // si pas d'occurence alors img pendaison avance
+                    {
+                        $_SESSION['pendaison'] = $_SESSION['pendaison'] + 1;
+                    }
                 }
                 $evolution = $_SESSION['pendaison'];
                 $nice = $_SESSION['nice'];
                 echo '<img src="img/pendaison/'.$evolution.'.png">';
-                
-                var_dump($_SESSION['reponses']); // sortir le tab des lettres testé...
-                var_dump($_SESSION['nice']);
-                var_dump($evolution);
 
                 // condition de fin de game
                 if ($nice == $longueur)
@@ -133,6 +144,8 @@
 
         ?>
         <?php
+        if (isset($nice) && isset($longueur))
+        {
             if ($nice == $longueur || $evolution == 9)
             {
                 echo 'LA PARTIE EST TERMINEE';
@@ -142,11 +155,29 @@
         ?>
             <form action="" method="POST">
                 <label for="lettre">Lettre à vérifier</label>
-                <input type="text" name="lettre">
+                <input type="text" name="lettre" maxlength="1">
                 <button type="submit" name="chercher">Chercher</button>
             </form>
         <?php 
             }
+        }
+        if (isset($msg_lettre))
+        {
+            echo '<section class="game_msg">';
+            echo $msg_lettre;
+            echo '</section>';
+        }
+        $allrep = $_SESSION['reponses'];
+
+        for ($l = 0; $l < COUNT($allrep); $l++)
+        {
+            if(isset($allrep[$l]))
+            {
+                echo '<section id="utilisees">';
+                echo "<img src='img/alpha/$allrep[$l].png' alt='$allrep[$l]' >";
+                echo '</section>';
+            }
+        }
         ?>
     </main>
     <footer></footer>
