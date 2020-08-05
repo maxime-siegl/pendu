@@ -1,22 +1,30 @@
 <?php
 session_start();
 # Réinitialise les variables de session quand le bouton reset est utilisé
-if(isset($_POST['reset'])) {
-  unset($_SESSION["letter_found"]);
-  unset($_SESSION["erreurs"]);
 
-  $fichier = file('mots.txt'); # Lit le fichier et renvoie le résultat dans un tableau
-  $random = $fichier[array_rand($fichier)]; # choisit une ligne au hasard
-  # trim() permet de supprimer les guillemets en début et en fin de chaîne, le résultat est stocké dans une session
-  $_SESSION["trimmed"] = trim($random);
-
-}
 # Si première connexion, on initialise le nombre d'erreur
 if(!isset($_SESSION["erreurs"])) {
   $_SESSION["erreurs"] = 0;
 }
+# Choisit un mot au hasard si la session ne contient pas de valeur
+if(!isset($_SESSION["trimmed"])){
+  $fichier = file('mots.txt'); # Lit le fichier et renvoie le résultat dans un tableau
+  $random = $fichier[array_rand($fichier)]; # choisit une ligne au hasard
+  # trim() permet de supprimer les guillemets en début et en fin de chaîne, le résultat est stocké dans une session
+  $_SESSION["trimmed"] = trim($random);
+}
+# Reset les lettres trouvées, les erreurs et choisit un mot au hasard
+if(isset($_POST['reset'])) {
+  unset($_SESSION["letter_found"]);
+  unset($_SESSION["erreurs"]);
 
+  $fichier = file('mots.txt');
+  $random = $fichier[array_rand($fichier)];
+  $_SESSION["trimmed"] = trim($random);
+
+}
 $mot = $_SESSION["trimmed"];
+
 
 echo "<br>" .$mot ."<br>";
 # *********************************
