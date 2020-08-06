@@ -21,8 +21,7 @@ class Partie
 
     $_SESSION["start"] =  $trimmed;
 
-    $array_to_string = implode(" ", $underscore_array);
-    echo $array_to_string . "<br>";
+    $_SESSION["underscore"] = implode(" ", $underscore_array);
   }
 
   # Cherche si la lettre postée se trouve dans le mot... et la place au bon endroit ?
