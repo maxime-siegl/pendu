@@ -14,14 +14,13 @@ class Partie
   # Cherche un mot au hasard dans le fichier txt
   public function searchWord(){
     $fichier = file('mots.txt');
-    $word = $fichier[array_rand($fichier)];
-    $trimmed = trim($word); # Récupère la valeur sans guillemet
-
-    $underscore_array = array_fill(0, strlen($trimmed), "_"); # remplace les lettres par des _
-
-    $_SESSION["start"] =  $trimmed;
-
-    $_SESSION["underscore"] = implode(" ", $underscore_array);
+    if(isset($_POST["start"])){
+      $word = $fichier[array_rand($fichier)];
+      $trimmed = trim($word); # Récupère la valeur sans guillemet
+      $underscore_array = array_fill(0, strlen($trimmed), "_"); # remplace les lettres par des _
+      $_SESSION["start"] =  $trimmed;
+      $_SESSION["underscore"] = implode(" ", $underscore_array);
+    }
   }
 
   # Cherche si la lettre postée se trouve dans le mot... et la place au bon endroit ?
@@ -49,10 +48,11 @@ class Partie
 
   # Remet à zéro le nombre de lettres trouvées et le nombre d'erreurs
   public function resetAll(){
-    if(isset($_POST['reset'])) {
-      unset($_SESSION["letter_found"]);
-      unset($_SESSION["erreurs"]);
-    }
+    unset($_SESSION["letter_found"]);
+    unset($_SESSION["erreurs"]);
+
+    unset($_SESSION["underscore"]);
+    unset($_SESSION["start"]);
   }
 }
 ?>
