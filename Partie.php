@@ -28,7 +28,7 @@ class Partie
     echo var_dump(implode(" ", $this->underscore_array)); # transforme en string le tableau
   }
 
-  # Cherche si la lettre postée se trouve dans le mot... et la place au bon endroit ?
+  # Cherche si la lettre postée se trouve dans le mot et la place au bon endroit
   public function searchLetter($reponse){
     $lettres = str_split($this->word);
     $good_answer = false;
@@ -45,7 +45,7 @@ class Partie
       $this->errors++;
     }
 }
-  # Compte le nombre d'erreurs
+  # Affiche le pendu
   public function affichePendu(){
     if($this->errors > 0) {
       echo "<img src='img/pendu$this->errors.jpg'>"; # Affichage d'une image en fonction du nombre de l'erreur
@@ -53,7 +53,6 @@ class Partie
     }
   }
 
-  # Remet à zéro le nombre de lettres trouvées et le nombre d'erreurs
   public function resetAll(){
     unset($_SESSION["partie"]);
   }

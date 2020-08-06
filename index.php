@@ -1,5 +1,4 @@
 <?php
-# Page permettant de tester la classe Partie
 require('Partie.php');
 session_start();
 
@@ -8,17 +7,17 @@ if(isset($_SESSION["partie"])) {
 }
 
 if(isset($_POST["start"])){
-  $partie = new Partie; # il faudra faire en sorte de créer d'autres parties... peut-être en créant l'objet ds post start?
+  $partie = new Partie;
   $_SESSION["partie"] = $partie;
 }
 
 # Remplacer les lettres en fonction de la réponse de l'user
 if(isset($_POST["reponse"])){
-  $partie->searchLetter($_POST["reponse"]); # Ne fonctionne pas encore...
+  $partie->searchLetter($_POST["reponse"]);
 }
 
 if(isset($_POST["reset"])){
-  $partie->resetAll(); # l'objet créé dans la première condition est inaccessible
+  $partie->resetAll();
 }
 ?>
 
@@ -51,3 +50,4 @@ if(isset($_POST["reset"])){
     </form>
   <?php } ?>
   </body>
+</html>
