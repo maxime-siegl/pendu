@@ -1,7 +1,7 @@
 <?php
 class Partie
 {
-  private $word = 'test';
+  private $word;
   private $errors = false;
   private $good_answers = false;
 
@@ -9,33 +9,25 @@ class Partie
 
   public function __construct(){ # Constructeur devant permettre la recherche de mot et sa transformation en _
     $this->searchWord();
-    $this->showUnderscore();
   }
 
   # Cherche un mot au hasard dans le fichier txt
   public function searchWord(){
-    if(!isset($_SESSION["trimmed"])){
-      $fichier = file('mots.txt');
-      $random = $fichier[array_rand($fichier)];
-      $trimmed = trim($random);
-    }elseif(isset($_POST['reset'])){ # Redondant ?
-      $fichier = file('mots.txt');
-      $random = $fichier[array_rand($fichier)];
-      $trimmed = trim($random);
-    }
-    return $trimmed; # Récupère la valeur sans guillemet
-  }
+    $fichier = file('mots.txt');
+    $word = $fichier[array_rand($fichier)];
+    $trimmed = trim($word); # Récupère la valeur sans guillemet
 
-  # Affiche autant de _ qu'il y en a dans le mot
-  public function showUnderscore(){
-    $word = $this->word;
-    $underscore_array = array_fill(0, strlen($word), "_"); #$word est indéfini...
-    return $underscore_array;
+    $underscore_array = array_fill(0, strlen($trimmed), "_"); # remplace les lettres par des _
+
+    $_SESSION["start"] =  $trimmed;
+
+    $array_to_string = implode(" ", $underscore_array);
+    echo $array_to_string . "<br>";
   }
 
   # Cherche si la lettre postée se trouve dans le mot... et la place au bon endroit ?
   public function searchLetter(){
-    $this->word;
+    $word = $this->word;
     $good_answer = false;
     for($i = 0; $i < strlen($word); $i++)
     {
