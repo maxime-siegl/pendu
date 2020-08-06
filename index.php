@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header></header>
+    <header>
+        <?php include 'include/header.php'; ?>
+    </header>
     <main>
         <form action="index.php" method="POST">
             <button type="submit" name="valider">Start random</button>
@@ -18,17 +20,20 @@
         <?php
             if (isset($_POST['valider']) || isset($_POST['new_game']) || isset($_POST['reset']))
             {
+                // + 1 en game
+                include 'include/connexion_bdd.php';
+                $id = $_SESSION['id'];
+                $nb_game = $_SESSION['game'] + 1;
+                $game = $db->prepare("UPDATE utilisateurs SET game = '$nb_game' WHERE id = '$id' ");
+                $game->execute(); // +1 au compteur de game
+                $_SESSION['game'] = $nb_game;
+
                 $fichier = file('mots.txt'); # Lit le fichier et renvoie le résultat dans un tableau
                 $mot = $fichier[array_rand($fichier)]; # choisit une ligne au hasard
                 # trim() permet de supprimer les guillemets en début et en fin de chaîne, le résultat est stocké dans une session
                 $_SESSION["mot"] = trim($mot);
                 
                 $longueur = strlen($mot);
-                
-                $_SESSION['pendaison'] = 0; // avancé de l'image du pendu (défaite)
-                $_SESSION['reponses'] = []; // ensmeble de toute les lettres qui ont été demandé
-                $_SESSION['nice'] = 0; // nb d'occurence de la lettre par rapport au mot
-                $_SESSION['lettre'] = ""; // lettre a comparer
 
                 for ($x = 0; $x < $longueur; $x++) // création des lettres du mot pendu...
                 {
@@ -40,6 +45,10 @@
 
                 $_SESSION['jeu'] = $caract;
                 $_SESSION['taille'] = $longueur;
+                $_SESSION['pendaison'] = 0; // avancé de l'image du pendu (défaite)
+                $_SESSION['reponses'] = []; // ensmeble de toute les lettres qui ont été demandé
+                $_SESSION['nice'] = 0; // nb d'occurence de la lettre par rapport au mot
+                $_SESSION['lettre'] = ""; // lettre a comparer
                 // var_dump($caract);
             }
 
@@ -81,7 +90,6 @@
                             $_SESSION['occurence'] = $_SESSION['occurence'] + 1;
                         }
                     }
-                    
                     $_SESSION['jeu'] = $caract;
 
                     if ($caract[$x]->getposition() == 0) // affichage des traits à la place des lettres
@@ -95,8 +103,8 @@
                     }
                 }
                 $_SESSION['nice'] = $_SESSION['nice'] + $_SESSION['occurence']; 
-                
-                var_dump($_SESSION['occurence']);
+                var_dump($_SESSION['mot']);
+                // var_dump($_SESSION['occurence']);
                 if (!isset($double))
                 {
                     if ($_SESSION['occurence'] == 0) // si pas d'occurence alors img pendaison avance
@@ -122,8 +130,29 @@
 
                 if (isset($game))
                 {
+                    include 'include/connexion_bdd.php';
+                    $id = $_SESSION['id'];
+
+                    $lb_query = $db->prepare("SELECT * FROM leaderboard WHERE id_utilisateur = '$id'");
+                    $lb_query->execute();
+                    $lb = $lb_query->fetch(PDO::FETCH_ASSOC); // recup donnee leaderboard par rapport au log
+                    
+                    $nb_lettre = $lb['nb_lettre'] + count($_SESSION['reponses']); // nb lette utilisée avant arret du jeu
+                    var_dump($lb);
                     if($game == 'win')
                     {
+                        if (empty($lb))
+                        {
+                            $win = $db->prepare("INSERT INTO leaderboard(id_utilisateur, victoire, defaite, nb_lettre) VALUES ('$id', '1', '0', '$nb_lettre') ");
+                            $win->execute();
+                        }
+                        else
+                        {
+                            $ajout_victoire = $lb['victoire'] + 1;
+                            $win_query = $db->prepare("UPDATE leaderboard SET victoire = '$ajout_victoire', nb_lettre = '$nb_lettre' WHERE id_utilisateur = '$id' ");
+                            $win_query->execute();
+                        }
+                        
                         echo '<section class="popwin">';
                         echo '<p>Vous avez réussi à trouver notre mot, on passe au prochain ?</p>';
                         echo '<button type="submit" name="new_game">New Game</button>';
@@ -131,6 +160,18 @@
                     }
                     else if ($game == 'loose')
                     {
+                        if(empty($lb))
+                        {
+                            $loose = $db->prepare("INSERT INTO leaderboard(id_utilisateur, victoire, defaite, nb_lettre) VALUES ('$id', '0', '1', '$nb_lettre') ");
+                            $loose->execute();
+                        }
+                        else
+                        {
+                            $ajout_defaite = $lb['defaite'] + 1;
+                            $loose_query = $db->prepare("UPDATE leaderboard SET defaite = '$ajout_defaite', nb_lettre = '$nb_lettre' WHERE id_utilisateur = '$id' ");
+                            $loose_query->execute();
+                        }
+
                         echo '<section class="poploose">';
                         echo '<form action="index.php" method="POST">';
                         echo '<p>Vous n\'avez pas réussi à trouver notre mot, on en tente un nouveau ?</p>';
@@ -167,15 +208,20 @@
             echo $msg_lettre;
             echo '</section>';
         }
-        $allrep = $_SESSION['reponses'];
 
-        for ($l = 0; $l < COUNT($allrep); $l++)
+        if (isset($_SESSION['reponses']))
         {
-            if(isset($allrep[$l]))
+            $allrep = $_SESSION['reponses'];
+
+            echo '<h3>Lettres utilisées</h3>';
+            for ($l = 0; $l < COUNT($allrep); $l++) // affichage des lettres utilisées
             {
-                echo '<section id="utilisees">';
-                echo "<img src='img/alpha/$allrep[$l].png' alt='$allrep[$l]' >";
-                echo '</section>';
+                if(isset($allrep[$l]))
+                {
+                    echo '<section id="utilisees">';
+                    echo "<img src='img/alpha/$allrep[$l].png' alt='$allrep[$l]' >";
+                    echo '</section>';
+                }
             }
         }
         ?>

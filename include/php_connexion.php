@@ -4,19 +4,21 @@
         $login = $_POST['login'];
         $mdp = $_POST['mdp'];
 
-        $bdd = "SELECT login FROM utilisateurs WHERE login = '$login'";
-        $verif_log = mysqli_query($bdd, $verif_log);
-        $verif = mysqli_fetch_all($verif_log);
-
-        if (!empty($verif))
+        include 'connexion_bdd.php';
+        $query = $db->prepare("SELECT * FROM utilisateurs WHERE login = '$login'");
+        $query->execute();
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        var_dump($result);
+        if (!empty($result))
         {
-            if (password_verify($mdp, $verif[0]['mdp']))
+            if (password_verify($mdp, $result['mdp']))
             {
                 session_start();
-                $_SESSION['login'] = $verif[0]['login'];
-                $_SESSION['pseudo'] = $verif[0]['pseudo'];
-                $_SESSION['mdp'] = $verif[0]['mdp'];
-                header('location:index.php');
+                $_SESSION['id'] = $result['id'];
+                $_SESSION['login'] = $result['login'];
+                $_SESSION['mdp'] = $result['mdp'];
+                $_SESSION['game'] = $result['game'];
+                header('location:../index.php');
             }
             else
             {
