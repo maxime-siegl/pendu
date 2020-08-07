@@ -43,6 +43,11 @@ class Partie
     if($good_answer == false) {
       $this->errors++;
     }
+
+    $search_underscore = in_array("_", $this->underscore_array);
+    if($search_underscore == false){
+      echo "Victoire !";
+    }
 }
   # Affiche le pendu
   public function affichePendu(){
