@@ -1,0 +1,15 @@
+.pendu_mot{
+  display: flex;
+  flex-direction:column;
+  margin: auto;
+  width:30%;
+  color:#36506F;
+  font-size: 40px;
+  font-family: 'Fredericka the Great', cursive;
+}
+.pendu_image{
+  display: flex;
+  flex-direction:column;
+  margin: auto;
+  width:20%;
+}

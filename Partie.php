@@ -24,8 +24,7 @@ class Partie
   }
 
   public function afficheUnderscore() {
-    var_dump($this->word);
-    echo var_dump(implode(" ", $this->underscore_array)); # transforme en string le tableau
+    echo implode(" ", $this->underscore_array); # transforme en string le tableau
   }
 
   # Cherche si la lettre postée se trouve dans le mot et la place au bon endroit
