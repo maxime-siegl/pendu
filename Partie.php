@@ -46,9 +46,14 @@ class Partie
 }
   # Affiche le pendu
   public function affichePendu(){
-    if($this->errors > 0) {
-      echo "<img src='img/pendu$this->errors.jpg'>"; # Affichage d'une image en fonction du nombre de l'erreur
 
+    if($this->errors > 0) {
+      if($this->errors < 8){
+      echo "<img src='img/pendu$this->errors.jpg'>"; # Affichage d'une image en fonction du nombre de l'erreur
+    }else{
+      echo "<img src='img/pendu$this->errors.jpg'>";
+      echo "Echec";
+    }
     }
   }
 
