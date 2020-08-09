@@ -22,7 +22,7 @@ if(isset($_GET["mot"]))
   $contents = file("mots.txt"); # On stocke le contenu du fichier dans $contents
   unset($contents[$mot]);
 
-  file_put_contents("mots.txt", implode("\n", $contents)); # On met ce nouveau contenu dans le fichier
+  file_put_contents("mots.txt", $contents); # On met ce nouveau contenu dans le fichier
 
   header("Location: admin.php");
 }
