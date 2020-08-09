@@ -6,9 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Jeu du Pendu Profil</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <header></header>
+    <header>
+        <?php include '../include/header.php'; ?>
+    </header>
     <main>
     <?php include '../include/php_profil.php'; ?>
         <section id ="profil_info">

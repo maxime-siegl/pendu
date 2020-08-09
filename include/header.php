@@ -7,7 +7,7 @@
 ?>
 
 <section id="titre">
-    <img src="" alt="">
+    <img src="../img/pendu.png" alt="image du jeu">
     <h1>Jeu du Pendu</h1>
 </section>
 <section>

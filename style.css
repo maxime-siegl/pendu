@@ -1,15 +1,40 @@
-.pendu_mot{
-  display: flex;
-  flex-direction:column;
-  margin: auto;
-  width:30%;
-  color:#36506F;
-  font-size: 40px;
-  font-family: 'Fredericka the Great', cursive;
+html
+{
+  margin: 0;
+  padding: 0;
 }
-.pendu_image{
+
+/* COMMUN AUX PAGES */
+
+
+/* HEADER */
+header #titre
+{
   display: flex;
-  flex-direction:column;
-  margin: auto;
-  width:20%;
+  justify-content: center;
 }
+#titre img
+{
+  width: 15vw;
+  height: 25vh;
+}
+#titre h1
+{
+  font-size: 3.6em;
+  text-align: center;
+}
+
+
+/* FOOTER */
+
+/* INSCRIPTION */
+
+/* CONNEXION */
+
+/* PROFIL */
+
+/* INDEX PENDU */
+
+/* LEADERBOARD */
+
+/* ADMIN */

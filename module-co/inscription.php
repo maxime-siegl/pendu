@@ -6,9 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Jeu du Pendu Inscription</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <header></header>
+    <header>
+        <?php include '../include/header.php'; ?>
+    </header>
     <main>
         <?php
             if (!isset($_SESSION['login']))
@@ -17,7 +20,7 @@
                 <form action="inscription.php" method="POST" enctype="multipart/form-data">
                     <section id="avatar_inscr">
                         <label for="avatar_def">Votre Avatar (défaut)</label>
-                        <img src="img/avatar/avatar-defaut.jpg" alt="Avatar par defaut">
+                        <img src="../img/avatar/avatar_defaut.png" alt="Avatar par defaut">
                     </section>
                     <section id="infos_inscr">
                         <label for="login">Login</label>
@@ -42,6 +45,8 @@
             }
         ?>
     </main>
-    <footer></footer>
+    <footer>
+        <?php include '../include/footer.php'; ?>
+    </footer>
 </body>
 </html>
