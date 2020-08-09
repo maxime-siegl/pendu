@@ -7,3 +7,6 @@ piscine
 pizza
 sieste
 assortiment
+carotte
+surete
+alors
