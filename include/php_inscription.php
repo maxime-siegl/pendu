@@ -1,7 +1,7 @@
 <?php
   include("connexion_bdd.php");
 
-    if (isset($_POST['inscription']) )
+    if (isset($_POST['inscription']))
     {
         $login = $_POST['login'];
         $mdp = $_POST['mdp'];
@@ -22,6 +22,7 @@
             $query->execute();
 
             echo "Inscription réussie.";
+            header('location:connexion.php');
             }
             // header('location:connexion.php');
         }
