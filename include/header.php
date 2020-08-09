@@ -10,12 +10,12 @@
     <img src="../img/pendu.png" alt="image du jeu">
     <h1>Jeu du Pendu</h1>
 </section>
-<section>
+<section id="menu">
     <nav>
         <ul>
             <li><a href="leaderboard.php">Hall Of Fame</a></li>
             <li><a href="index.php">The Game</a></li>
-            <li><a href="module-co/profil.php">Profil</a></li>
+            <li><a href="profil.php">Profil</a></li>
             <?php
                 if(isset($_SESSION['login']))
                 {

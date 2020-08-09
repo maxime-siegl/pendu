@@ -24,11 +24,122 @@ header #titre
   text-align: center;
 }
 
+header #menu nav ul
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+#menu nav ul li
+{
+  list-style-type: none;
+}
+#menu nav ul li a
+{
+  text-decoration: none;
+  color: black;
+}
 
 /* FOOTER */
+footer
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+#left ul
+{
+  display: flex;
+  flex-direction: column;
+}
+footer #left ul li
+{
+  font-size: 1.2em;
+  margin-bottom: 8%;
+  list-style-type: none;
+  text-align: center;
+}
+#left a
+{
+  text-decoration: none;
+  color: black;
+}
+
+#middle
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#game_footer
+{
+  margin-top: 0px;
+  padding-top: 0px;
+  width: 10vw;
+  height: 18vh;
+  border-radius: 50%;
+}
+
+#right 
+{
+  text-align: center;
+}
+.github
+{
+  width: 6vw;
+  height: 14vh;
+}
+
 
 /* INSCRIPTION */
+#inscription
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#inscription #avatar_inscr
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+#avatar_inscr img
+{
+  width: 16vw;
+  height: 34vh;
+  border-radius: 50%;
+}
+#infos_inscr
+{
+  display: flex;
+  flex-direction: column;
+}
+#infos_inscr p
+{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+#infos_inscr input
+{
+  border-radius: 15px;
+  text-align: center;
+  font-weight: bold;
+}
 
+#page_inscription .bouton
+{
+  text-align: center;
+}
+#page_inscription button
+{
+  text-align: center;
+  width: 19vw;
+  height: 19vh;
+  border-radius: 60%;
+}
 /* CONNEXION */
 
 /* PROFIL */

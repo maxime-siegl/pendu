@@ -12,26 +12,34 @@
     <header>
         <?php include '../include/header.php'; ?>
     </header>
-    <main>
+    <main id="page_inscription">
         <?php
             if (!isset($_SESSION['login']))
             {
         ?>
-                <form action="inscription.php" method="POST" enctype="multipart/form-data">
+            <form action="inscription.php" method="POST" enctype="multipart/form-data">
+                <section id="inscription">
                     <section id="avatar_inscr">
-                        <label for="avatar_def">Votre Avatar (défaut)</label>
+                        <label for="avatar_def" >Votre Avatar (défaut)</label>
                         <img src="../img/avatar/avatar_defaut.png" alt="Avatar par defaut">
                     </section>
                     <section id="infos_inscr">
-                        <label for="login">Login</label>
-                        <input type="text" name="login" required>
-                        <label for="mdp">Mot de Passe</label>
-                        <input type="password" name="mdp" required>
-                        <label for="confirmation_mdp">Confirmation du Mot de Passe</label>
-                        <input type="password" name="confirmation_mdp" required>
+                        <p>
+                            <label for="login">Login</label>
+                            <input type="text" name="login" required>
+                        </p>
+                        <p>
+                            <label for="mdp">Mot de Passe</label>                        
+                            <input type="password" name="mdp" required>
+                        </p>
+                        <p>
+                            <label for="confirmation_mdp">Confirmation du Mot de Passe</label>
+                            <input type="password" name="confirmation_mdp" required>
+                        </p>
                     </section>
+                </section>
                     <section class="bouton"><button type="submit" name="inscription">S'inscrire</button></section>
-                </form>
+            </form>
         <?php
             include '../include/php_inscription.php';
             }

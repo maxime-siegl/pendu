@@ -7,10 +7,10 @@
 </section>
 <section id="middle">
     <p>Une petite Game ?</p>
-    <a href=""><img src="" alt=""></a>
+    <a href=""><img src="../img/game.png" alt="new game" id="game_footer"></a>
 </section>
 <section id ="right">
-    <p>Une expérience de jeu satisfaisante ? Venez découvrire notre travail !!</p>
-    <a href="">image git hub lien max</a>
-    <a href="">Image git hub lien cecile</a>
+    <p>Une expérience de jeu satisfaisante ? <br> Venez découvrire notre travail !!</p>
+    <a href=""><img src="../img/github_cecile.png" alt="GitHub Cecile" class="github"></a>
+    <a href=""><img src="../img/github_max.png" alt="GitHub Maxime" class="github"></a>
 </section>

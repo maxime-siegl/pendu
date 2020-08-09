@@ -17,6 +17,7 @@
             if(!isset($_SESSION['login']))
             {
         ?>
+        <p>Oh la malheureux avant de jouer faut se connecter et si tu n'as pas de compte chez nous passes par l'inscription</p>
             <section id="connexion">
                 <img src="" alt="Image du jeu">
                 <section id="info_co">
