@@ -42,19 +42,19 @@ if(isset($_POST["reset"])){
       if(isset($_SESSION["partie"]))
       {
 
-         ?><div class="pendu_image">
+         ?><section class="pendu_image">
          <?php $partie->affichePendu(); ?>
-       </div>
-        <div class="pendu_mot">
+       </section>
+        <section class="pendu_mot">
         <?php
 
         $partie->afficheUnderscore();
          ?>
-        </div>
+        </section>
 
 
         <form action="" method="POST">
-          <label for "reponse"> Entrez une lettre : </label>
+          <label for="reponse"> Entrez une lettre : </label>
           <input type="text" name="reponse">
         </form>
         <form action="" method="POST">
