@@ -13,12 +13,11 @@
         {
             if (password_verify($mdp, $result['mdp']))
             {
-                session_start();
                 $_SESSION['id'] = $result['id'];
                 $_SESSION['login'] = $result['login'];
-                $_SESSION['mdp'] = $result['mdp'];
+                $_SESSION['mdp'] = $mdp;
                 $_SESSION['game'] = $result['game'];
-                header('location:../index.php');
+                header('location:index.php');
             }
             else
             {

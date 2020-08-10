@@ -6,11 +6,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Jeu du Pendu Inscription</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <?php include '../include/header.php'; ?>
+        <?php include 'include/header.php'; ?>
     </header>
     <main id="page_inscription">
         <?php
@@ -21,7 +21,7 @@
                 <section id="inscription">
                     <section id="avatar_inscr">
                         <label for="avatar_def" >Votre Avatar (défaut)</label>
-                        <img src="../img/avatar/avatar_defaut.png" alt="Avatar par defaut">
+                        <img src="img/avatar/avatar_defaut.png" alt="Avatar par defaut">
                     </section>
                     <section id="infos_inscr">
                         <p>
@@ -41,7 +41,7 @@
                     <section class="bouton"><button type="submit" name="inscription">S'inscrire</button></section>
             </form>
         <?php
-            include '../include/php_inscription.php';
+            include 'include/php_inscription.php';
             }
             else
             {
@@ -54,7 +54,7 @@
         ?>
     </main>
     <footer>
-        <?php include '../include/footer.php'; ?>
+        <?php include 'include/footer.php'; ?>
     </footer>
 </body>
 </html>

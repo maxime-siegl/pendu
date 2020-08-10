@@ -12,9 +12,9 @@ if (isset($_FILES['avatar']) && !empty($_FILES['avatar']['name'])) // si li y a 
         if (in_array($extension_upload, $extensions_valides)) // si lextension du fichier est conforme
         {
             // var_dump('ext ok');
-            $localisation = "../img/avatar/".$_SESSION['id'].".".$extension_upload ; //lieu de stockage forcé
+            $localisation = "img/avatar/".$_SESSION['id'].".".$extension_upload ; //lieu de stockage forcé
             $avatar_file = $_FILES['avatar']['tmp_name'];
-            $resultat = move_uploaded_file($avatar_file, '../img/avatar/'.$_SESSION['id'].'.'.$extension_upload); // on déplace le fichier dans le lieu de sotckae forcé
+            $resultat = move_uploaded_file($avatar_file, 'img/avatar/'.$_SESSION['id'].'.'.$extension_upload); // on déplace le fichier dans le lieu de sotckae forcé
             // var_dump($localisation);
             // var_dump($avatar_file);
             // var_dump($resultat);

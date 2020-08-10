@@ -4,30 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Jeu du Pendu Leaderboard</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
         <?php include 'include/header.php'; ?>
     </header>
-    <main>
+    <main id="leaderboard">
         <h1>Hall Of Fame</h1>
-        <table>
-            <thead>
-                <th>Top 10 Ratio</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Pseudo</td>
-                    <td>Victoire</td>
-                    <td>Nombre de game</td>
-                    <td>ratio V/D</td>
-                    <td>Moyenne de lettres utilisées</td>
-                </tr>
+        <section id="tab_leader">
+            <h3>Top 10 Ratio</h3>
+            <table>
+                <thead>
+                    <th>Pseudo</th>
+                    <th>Victoire</th>
+                    <th>Nombre de game</th>
+                    <th>ratio V/D</th>
+                    <th>Moyenne de lettres utilisées</th>
+                </thead>
+                <tbody>
                 <?php include 'include/php_leaderboard.php';  ?>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </section>
     </main>
-    <footer></footer>
+    <footer>
+        <?php include 'include/footer.php'; ?>
+    </footer>
 </body>
 </html>

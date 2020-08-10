@@ -4,8 +4,32 @@ html
   padding: 0;
 }
 
-/* COMMUN AUX PAGES */
 
+/* COMMUN AUX PAGES */
+button,
+input,
+img
+{
+  outline: none;
+}
+
+.game_msg
+{
+  text-align: center;
+}
+
+button
+{
+  background-color: rgba(122, 101, 76, 0.48));
+}
+
+button:hover
+{
+  cursor: pointer;
+  background-color: rgba(235, 249, 255, 0.815);
+  color: rgba(122, 101, 76, 0.48);
+  box-shadow: 3px 3px 3px rgb(88, 112, 122, 0.48);
+}
 
 /* HEADER */
 header #titre
@@ -33,20 +57,55 @@ header #menu nav ul
 #menu nav ul li
 {
   list-style-type: none;
+  font-size: 1.3em;
+  font-weight: bold;
 }
 #menu nav ul li a
 {
   text-decoration: none;
   color: black;
 }
+#menu a:hover
+{
+  color: rgba(122, 101, 76, 0.48);
+  text-shadow: 3px 3px 3px rgba(235, 249, 255);
+}
+
+#menu
+{
+  border-radius: 15px;
+  background-color: rgba(162, 187, 198, 0.78);
+}
+
+#menu button
+{
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+#menu button:hover
+{
+  cursor: pointer;
+  background-color: rgba(235, 249, 255, 0.815);
+  color: rgba(122, 101, 76, 0.48);
+  box-shadow: 3px 3px 3px rgb(88, 112, 122, 0.48);
+}
 
 /* FOOTER */
 footer
 {
+  margin-top: 2%;
+  border-radius: 15px;
+  background-color: rgba(199, 182, 163, 0.78);
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
+footer p
+{
+  font-weight: bold;
+}
+
 #left ul
 {
   display: flex;
@@ -62,7 +121,13 @@ footer #left ul li
 #left a
 {
   text-decoration: none;
-  color: black;
+  color: rgba(0, 0, 0);
+  font-weight: bold;
+}
+#left a:hover
+{
+  color: rgba(162, 187, 198, 0.78);
+  text-shadow: 3px 3px 6px rgba(235, 249, 255);
 }
 
 #middle
@@ -84,8 +149,13 @@ footer #left ul li
 {
   text-align: center;
 }
+#right p 
+{
+  font-weight: bold;
+}
 .github
 {
+  border-radius: 40px;
   width: 6vw;
   height: 14vh;
 }
@@ -135,17 +205,341 @@ footer #left ul li
 }
 #page_inscription button
 {
+  background-color: rgba(122, 101, 76, 0.48));
   text-align: center;
   width: 19vw;
   height: 19vh;
   border-radius: 60%;
 }
 /* CONNEXION */
+#connexion
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+#connexion #phrase
+{
+  font-weight: bold;
+  font-size: 1.3em;
+}
+#phrase a
+{
+  text-decoration: none;
+  color: black;
+  font-style: oblique;
+}
+#phrase a:hover
+{
+  color: rgba(51, 123, 199);
+  text-shadow: 3px 3px 3px rgba(122, 80, 7);
+}
 
+
+#connexion img
+{
+  width: 25vw;
+  height: 25vh;
+  border-radius: 25%;
+}
+#connexion #login_co
+{
+  display: flex;
+  flex-direction: row;
+}
+#connexion #login_co p
+{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 1%;
+}
+#connexion #login_co p input
+{
+  border-radius: 15px;
+  text-align: center;
+}
+
+#connexion .bouton
+{
+  text-align: center;
+}
+#connexion button
+{
+  background-color: rgba(122, 101, 76, 0.48));
+  text-align: center;
+  width: 11vw;
+  height: 19vh;
+  border-radius: 50%;
+}
 /* PROFIL */
+#infos_perso
+{
+  background-color: rgba(201, 186, 165, 0.79);
+  border-radius: 25px;
+  padding: 1%;
+}
+
+#page_profil h3
+{
+  text-align: center;
+  font-size: 2em;
+}
+#profil_info
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#info_profil
+{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 2%
+}
+#info_profil input
+{
+  border-radius: 15px;
+  text-align: center;
+  width: 60%;
+  align-self: center;
+}
+
+#avatar_profil
+{
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  margin-left: 10%;
+}
+#avatar_profil img
+{
+  border-radius: 50%;
+  width: 14vw;
+  height: 24vh;
+}
+
+.bouton_profil
+{
+  text-align: center;
+}
+.bouton_profil button
+{
+  text-align: center;
+  width: 11vw;
+  height: 19vh;
+  border-radius: 50%;
+}
+
+#tab_score
+{
+  background-color: rgb(235, 248, 255);
+  border-radius: 25px;
+  margin-top: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#tab_score h3
+{
+  text-align: center;
+  font-size: 2em;
+}
+#tab_score table
+{
+  border-collapse: collapse;
+}
+#tab_score tr
+{
+  border-collapse: collapse;
+}
+#tab_score td
+{
+  border: 3px black solid;
+  border-collapse: collapse;
+  text-align: center;
+  font-weight: bold;
+  padding: 2%;
+  width: 14vw;
+}
 
 /* INDEX PENDU */
+#index form
+{
+  text-align: center;
+}
+#index button
+{
+  text-align: center;
+  width: 11vw;
+  height: 19vh;
+  border-radius: 50%;
+}
+
+#index #mot_img_lettre
+{
+  display: flex;
+  flex-direction: column;
+}
+#index #mot_img
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+#index #mot_pendu
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+#mot_pendu .trait
+{
+  width: 4vw;
+  height: 6vh;
+}
+.lettre_mot
+{
+  width: 4vw;
+  height: 6vh;
+}
+.pendaison
+{
+  width: 17vw;
+  height: 25vh;
+}
+
+#form_lettre label
+{
+  font-weight: bold;
+}
+#form_lettre input
+{
+  border-radius: 15px;
+  text-align: center;
+}
+
+#index h3
+{
+  text-align: center;
+  font-size: 2em;
+}
+#utilisees
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#lettre_use
+{
+  width: 5vw;
+  height: 8vh;
+}
+
+.popwin,
+.poploose
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.popwin p,
+.poploose p
+{
+  font-weight: bold;
+  font-size: 1.6em;
+  font-style: italic;
+}
+
+#end_game
+{
+  text-align: center;
+  font-weight: bold;
+  font-size: 2em;
+  text-decoration: underline;
+}
 
 /* LEADERBOARD */
+#leaderboard h1
+{
+  text-align: center;
+}
+#tab_leader
+{
+  background-color: rgba(137, 204, 193, 0.80);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 3%;
+}
+#tab_leader table
+{
+  border-collapse: collapse;
+}
+#tab_leader th
+{
+  border: 2px solid white;
+  padding: 2%;
+  text-align: center;
+}
+#tab_leader td
+{
+  font-weight: bold;
+  color: rgba(128, 79, 60);
+  border: 2px solid white;
+  text-align: center;
+  width: 14vw;
+}
 
 /* ADMIN */
+#page_admin #admin
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#admin table
+{
+  background-color: rgba(90, 112, 125);
+  border: 2px double black;
+  border-collapse: collapse;
+}
+#admin td
+{
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 2%;
+  color: white;
+  padding: 1%;
+}
+#admin td a
+{
+  color: black;
+  font-style: italic;
+}
+
+#page_admin form
+{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 5%;
+}
+#page_admin label
+{
+  font-weight: bold;
+  font-size: 1.3em;
+}
+#page_admin input
+{
+  border-radius: 15px;
+  text-align: center;
+}

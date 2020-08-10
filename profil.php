@@ -6,16 +6,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Jeu du Pendu Profil</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <?php include '../include/header.php'; ?>
+        <?php include 'include/header.php'; ?>
     </header>
-    <main>
-    <?php include '../include/php_profil.php'; ?>
-        <section id ="profil_info">
-            <form action="profil.php" method="POST" enctype="multipart/form-data">
+    <main id="page_profil">
+    <?php include 'include/php_profil.php'; ?>
+    <section id="infos_perso">
+        <h3>Infos Personnelles</h3>
+        <form action="profil.php" method="POST" enctype="multipart/form-data">
+            <section id ="profil_info">
                 <section id="info_profil">
                     <label for="login">Votre Login</label>
                     <input type="text" name="login" value="<?php echo $_SESSION['login']; ?>">
@@ -30,22 +32,19 @@
                     <img src="<?php echo $infos['avatar'] ;?>" alt="avatar img">
                     <input type="file" name="avatar">
                 </section>
-                <section id="bouton_profil">
-                    <button type="submit" name="modifier">Modifier</button>
-                </section>
-            </form>
-        </section>
+            </section>
+            <section class="bouton_profil">
+                <button type="submit" name="modifier">Modifier</button>
+            </section>
+        </form>
+    </section>
         <section id="tab_score">
+            <h3>Statistiques Personnelles</h3>
             <table>
-                <thead>
-                    <tr>
-                    <td>Statistiques des Tes Games</td>
-                    </tr>
-                </thead>
                 <tbody>
                     <tr>
-                        <td><?php echo $infos['game']; ?></td>
-                        <td><?php echo $score['victoire']; ?></td>
+                        <td>Nombre de Game: <br> <?php echo $infos['game']; ?></td>
+                        <td>Nombre de Victoire: <br> <?php echo $score['victoire']; ?></td>
                     </tr>
                     <tr>
                         <td>
@@ -61,6 +60,8 @@
             </table>
         </section>
     </main>
-    <footer></footer>
+    <footer>
+        <?php include 'include/footer.php'; ?>
+    </footer>
 </body>
 </html>

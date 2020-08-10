@@ -2,12 +2,12 @@
     if (isset($_POST['deconnexion']))
     {
         session_destroy();
-        header('location:module-co/connexion.php');
+        header('location:connexion.php');
     }
 ?>
 
 <section id="titre">
-    <img src="../img/pendu.png" alt="image du jeu">
+    <img src="img/pendu.png" alt="image du jeu">
     <h1>Jeu du Pendu</h1>
 </section>
 <section id="menu">
@@ -17,6 +17,15 @@
             <li><a href="index.php">The Game</a></li>
             <li><a href="profil.php">Profil</a></li>
             <?php
+                if (isset($_SESSION['login']) && $_SESSION['login'] == 'admin' && $_SESSION['mdp'] == 'admin')
+                {
+                    echo '<li>';
+                    echo '<a href="admin.php">';
+                    echo 'Gestion des Mots';
+                    echo '</a>';
+                    echo '</li>';
+                }
+
                 if(isset($_SESSION['login']))
                 {
             ?>
@@ -30,8 +39,8 @@
                 else
                 {
             ?>
-                    <li><a href="module-co/inscription.php">Inscription</a></li>
-                    <li><a href="module-co/connexion.php">Connexion</a></li>
+                    <li><a href="inscription.php">Inscription</a></li>
+                    <li><a href="connexion.php">Connexion</a></li>
             <?php
                 }
             ?>

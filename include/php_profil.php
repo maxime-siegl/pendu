@@ -3,7 +3,7 @@
     {
         $login = $_SESSION['login'];
         $id = $_SESSION['id'];
-        include '../include/connexion_bdd.php'; // enlever le include ?
+        include 'connexion_bdd.php'; // enlever le include ?
         $info_query = $db->prepare("SELECT * FROM utilisateurs WHERE login = '$login' ");
         $info_query->execute();
         $infos = $info_query->fetch(PDO::FETCH_ASSOC); // recuperation des infos par rapport au login
@@ -13,8 +13,12 @@
         $score_query->execute();
         $score = $score_query->fetch(PDO::FETCH_ASSOC);
 
-        $ratio = $score['victoire'] / $score['defaite']; // ratio de victoire
+        if ((!empty($score) && $score['defaite'] == 0) || $score['defaite'] == 0) // empecher la division par 0
+        {
+            $score['defaite'] = 1;
+        }
         $moy_lettre = $score['nb_lettre'] / $infos['game']; // moyenne de lettres utilisées par game
+        $ratio = $score['victoire'] / $score['defaite']; // ratio de victoire
         
         // modif du profil
         if (isset($_POST['modifier']) && !empty($_POST['login']))
@@ -44,13 +48,13 @@
                 }
 
                 // changement de l'avatar
-                include '../include/php_avatar.php';
+                include 'include/php_avatar.php';
             }
         }
     }
     else
     {
-        header('location:../index.php');
+        header('location:index.php');
     }
 
 ?>

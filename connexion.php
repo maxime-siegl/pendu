@@ -6,29 +6,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Jeu du Pendu Connexion</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <?php include '../include/header.php'; ?>
+        <?php include 'include/header.php'; ?>
     </header>
     <main>
         <?php
             if(!isset($_SESSION['login']))
             {
         ?>
-        <p>Oh la malheureux avant de jouer faut se connecter et si tu n'as pas de compte chez nous passes par l'inscription</p>
             <section id="connexion">
-                <img src="" alt="Image du jeu">
+            <p id="phrase">Oh la malheureux !! Avant de jouer, il faut se connecter <br> 
+            Et si tu n'as pas de compte chez nous, passes par l' <a href="inscription.php">inscription</a></p>
+                <img src="img/jeu_du_pendu.png" alt="Image du jeu">
                 <section id="info_co">
                     <form action="connexion.php" method="POST">
                         <section id="login_co">
-                            <label for="login">Login</label>
-                            <input type="text" name="login">
-                            <label for="mdp">Mot de Passe</label>
-                            <input type="password" name="mdp">
+                            <p>
+                                <label for="login">Login</label>
+                                <input type="text" name="login">
+                            </p>
+                            <p>
+                                <label for="mdp">Mot de Passe</label>
+                                <input type="password" name="mdp">
+                            </p>
                         </section>
-                        <section id="bouton_co">
+                        <section class="bouton">
                             <button type="submit" name="connexion">Se Connecter</button>
                         </section>
                     </form>
@@ -36,7 +41,7 @@
             </section>
         <?php
             }
-            include '../include/php_connexion.php';
+            include 'include/php_connexion.php';
             if (isset($msg_imp))
             {
                 echo '<section class ="msg_imp">';
@@ -45,6 +50,8 @@
             }
         ?>
     </main>
-    <footer></footer>
+    <footer>
+            <?php include 'include/footer.php' ; ?>
+    </footer>
 </body>
 </html>
